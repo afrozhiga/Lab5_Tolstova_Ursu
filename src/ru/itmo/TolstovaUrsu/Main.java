@@ -35,6 +35,7 @@ public class Main {
 
         List<Report> reports = reportCollection.getAllReports();
         reports.forEach(System.out::println);
+        // reports.forEach(report -> System.out.println(report)); - полная форма
 
     }
 
