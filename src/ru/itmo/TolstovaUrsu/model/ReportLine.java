@@ -98,20 +98,20 @@ public final class ReportLine {
 
     public void setUnit(String unit) {
         if (param == MeasurementParam.PH) {
-            if (unit == "pH") {
+            if (unit.equals("pH")) {
                 this.unit = unit;
             } else {
                 throw new IllegalArgumentException("величина pH–это pH:" + unit);
             }
         } else if (param == MeasurementParam.SOLUBILITY) {
-            if (unit == "г/100г") {
+            if (unit.equals("г/100г")) {
                 this.unit = unit;
             } else {
                 throw new IllegalArgumentException("растворимость измеряется в 'г/100г':" + unit);
             }
         }
             else if (param == MeasurementParam.CONDUCTIVITY) {
-                if (unit=="TDS" || unit=="См/м") {
+                if (unit.equals("TDS") || unit.equals("См/м")) {
                     this.unit = unit;
                 }
                 else{
