@@ -36,6 +36,71 @@ public class ReportCollectionManager {
         return null;
     }
 
+     public Report updateName(long id, String name) {
+            Report report = getById(id);
+
+            if (report == null) {
+                throw new IllegalArgumentException("Отчет с id " + id + " не найден");
+            }
+
+            report.setName(name);
+
+            return report;
+        }
+
+   public Report updateStatus(long id, ReportStatus status) {
+    Report report = getById(id);
+
+    if (report == null) {
+        throw new IllegalArgumentException("Отчет с id " + id + " не найден");
+    }
+
+    report.setStatus(status);
+
+    return report;
+}
+    public Report updateOwner(long id, String ownerUsername) {
+    Report report = getById(id);
+
+    if (report == null) {
+        throw new IllegalArgumentException("Отчет с id " + id + " не найден");
+    }
+
+    report.setOwnerUsername(ownerUsername);
+
+    return report;
+}
+    
+    public Report updateSignedBy(long id, String signedBy) {
+   Report report = getById(id);
+
+    if (report == null) {
+        throw new IllegalArgumentException("Отчет с id " + id + " не найден");
+    }
+
+    report.setOwnerUsername(ownerUsername);
+
+    return report;
+}
+
+     public Report update(long id, String name, ReportStatus status,
+                String ownerUsername, String signedBy) {
+            Report report = getById(id);
+
+            if (report == null) {
+                throw new IllegalArgumentException("Отчет с id " + id + " не найден");
+            }
+
+            report.setName(name);
+            report.setOwnerUsername(ownerUsername);
+            report.setStatus(status);
+            report.setSignedBy(signedBy);
+            report.setUpdatedAt(Instant.now());
+
+            return report;
+        }
+
+
 
     public Report update(long id, String name, ReportStatus status,
                 String ownerUsername, String signedBy) {
