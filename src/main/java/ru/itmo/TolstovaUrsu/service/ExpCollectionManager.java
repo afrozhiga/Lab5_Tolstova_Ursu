@@ -1,8 +1,6 @@
 package ru.itmo.TolstovaUrsu.service;
 
 import ru.itmo.TolstovaUrsu.model.Experiment;
-import ru.itmo.TolstovaUrsu.model.Report;
-import ru.itmo.TolstovaUrsu.model.ReportLine;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -18,33 +16,16 @@ public class ExpCollectionManager {
     }
 
     public Optional<Experiment> getById(long id) {
-        return experiments.stream().filter(e -> e.getId() == id).findFirst();
+        return experiments.stream()
+                .filter(e -> e.getId() == id)
+                .findFirst();
     }
 
     public ArrayList<Experiment> getAll() {
         return new ArrayList<>(experiments);
     }
 
-    public void deleteReportLine(long lineId) {
-    }
-
-    public Report getReportById(long reportId) {
-        return null;
-    }
-
-    public ReportLine getLineById(long lineId) {
-        return null;
-    }
-
-    public void finalizeReport(long reportId) {
-
-    }
-
-    public void signReport(long reportId, String currentUser) {
-    }
-
-    public ArrayList<ReportLine> getLinesByReportId(long reportId) {
-
-        return null;
+    public boolean delete(long id) {
+        return experiments.removeIf(e -> e.getId() == id);
     }
 }
