@@ -9,7 +9,6 @@ public class Main {
         ReportCollectionManager reportManager = new ReportCollectionManager();
         SampleCollectionManager sampleManager = new SampleCollectionManager();
 
-        // Используем правильный конструктор с двумя менеджерами
         CommandInterpreter interpreter = new CommandInterpreter(reportManager, sampleManager);
         interpreter.start();
     }
