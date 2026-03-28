@@ -54,26 +54,26 @@ public class RepSignCommand extends Command {
 
     @Override
     public String getDescription() {
-        return "";
+        return "подписать отчет";
     }
 
     @Override
     public String getName() {
-        return "";
+        return "sign_report";
     }
 
     @Override
     public boolean equals(Object obj) {
-        return false;
-    }
-
+    if (this == obj) return true;
+    if (!(obj instanceof SignReportCommand)) return false;
+    SignReportCommand other = (SignReportCommand) obj;
+    return Objects.equals(reportId, other.reportId);
+}
     @Override
     public int hashCode() {
-        return 0;
-    }
-
+    return Objects.hash(reportId);
+}
     @Override
     public String toString() {
-        return "";
-    }
+    return "SignReportCommand{reportId=" + reportId + "}";
 }
