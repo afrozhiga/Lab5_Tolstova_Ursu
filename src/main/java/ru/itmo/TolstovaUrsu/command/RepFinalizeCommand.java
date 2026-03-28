@@ -53,11 +53,11 @@ public class RepFinalizeCommand extends Command {
 
     @Override
     public String getDescription() {
-        return "";
+        return "завершить отчет";
     }
 
     @Override
     public String getName() {
-        return "";
+        return "finalize";
     }
 }
