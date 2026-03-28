@@ -2,7 +2,6 @@ package ru.itmo.TolstovaUrsu.command;
 
 import ru.itmo.TolstovaUrsu.model.Report;
 import ru.itmo.TolstovaUrsu.model.ReportStatus;
-import ru.itmo.TolstovaUrsu.service.ExpCollectionManager;
 import ru.itmo.TolstovaUrsu.service.ReportCollectionManager;
 import ru.itmo.TolstovaUrsu.service.SampleCollectionManager;
 
@@ -12,11 +11,13 @@ import java.util.Scanner;
 public class RepSignCommand extends Command {
     private static final String CURRENT_USER = "SYSTEM";
 
-    public RepSignCommand(ReportCollectionManager reportManager, SampleCollectionManager sampleManager, Scanner scanner) {
-        ExpCollectionManager expManager = new ExpCollectionManager();
-        super(reportManager, sampleManager, scanner);
+    public RepSignCommand(ReportCollectionManager reportManager,
+                          SampleCollectionManager sampleManager,
+                          Scanner scanner) {
+        super(reportManager, sampleManager, scanner); // ← первым, без лишнего expManager
     }
 
+    @Override
     public void execute(String[] args) {
         if (args.length < 1) {
             System.out.println("Ошибка: укажите id отчёта. Использование: rep_sign <report_id>");
@@ -54,26 +55,26 @@ public class RepSignCommand extends Command {
 
     @Override
     public String getDescription() {
-        return "подписать отчет";
+        return "подписать отчёт. Использование: rep_sign <report_id>";
     }
 
     @Override
     public String getName() {
-        return "sign_report";
+        return "rep_sign";
     }
 
     @Override
     public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (!(obj instanceof SignReportCommand)) return false;
-    SignReportCommand other = (SignReportCommand) obj;
-    return Objects.equals(reportId, other.reportId);
-}
+        return obj instanceof RepSignCommand;
+    }
+
     @Override
     public int hashCode() {
-    return Objects.hash(reportId);
-}
+        return getClass().hashCode();
+    }
+
     @Override
     public String toString() {
-    return "SignReportCommand{reportId=" + reportId + "}";
+        return "RepSignCommand{}";
+    }
 }
