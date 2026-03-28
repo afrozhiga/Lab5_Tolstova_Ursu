@@ -1,9 +1,6 @@
 package ru.itmo.TolstovaUrsu.command;
 
-import ru.itmo.TolstovaUrsu.model.Report;
 import ru.itmo.TolstovaUrsu.model.ReportLine;
-import ru.itmo.TolstovaUrsu.model.ReportStatus;
-import ru.itmo.TolstovaUrsu.service.ExpCollectionManager;
 import ru.itmo.TolstovaUrsu.service.ReportCollectionManager;
 import ru.itmo.TolstovaUrsu.service.SampleCollectionManager;
 
@@ -12,11 +9,13 @@ import java.util.Scanner;
 
 public class RepDelLineCommand extends Command {
 
-    public RepDelLineCommand(ReportCollectionManager reportManager, SampleCollectionManager sampleManager, Scanner scanner) {
+    public RepDelLineCommand(ReportCollectionManager reportManager,
+                             SampleCollectionManager sampleManager,
+                             Scanner scanner) {
         super(reportManager, sampleManager, scanner);
-
     }
 
+    @Override
     public void execute(String[] args) {
         if (args.length < 2) {
             System.out.println("Ошибка: укажите id строки. Использование: rep_delline <line_id>");
@@ -32,32 +31,39 @@ public class RepDelLineCommand extends Command {
         }
 
         Optional<ReportLine> line = reportManager.getLineById(lineId);
-        System.out.println("Ошибка: строка с id=" + lineId + " не найдена");
-        return;
+        if (line.isEmpty()) {
+            System.out.println("Ошибка: строка с id=" + lineId + " не найдена");
+            return;
+        }
 
+        reportManager.deleteLine(lineId);
+        System.out.println("Строка " + lineId + " успешно удалена");
     }
 
     @Override
     public String getDescription() {
-        return "обновить строку отчёта";
+        return "удалить строку отчета";
     }
 
     @Override
     public String getName() {
-        return "update_line";
+        return "rep_delline";
     }
 
     @Override
-public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (!(obj instanceof RepUpdateLineCommand)) return false;
-    RepUpdateLineCommand other = (RepUpdateLineCommand) obj;
-    return lineId == other.lineId;
-}
+    public boolean equals(Object obj) {
+        return obj instanceof RepDelLineCommand;
+    }
 
-@Override
-public int hashCode() {
-    return Long.hashCode(lineId);
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "RepDelLineCommand{}";
+    }
 }
 
 @Override
