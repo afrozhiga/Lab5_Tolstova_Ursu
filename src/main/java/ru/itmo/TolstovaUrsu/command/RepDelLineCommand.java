@@ -39,26 +39,28 @@ public class RepDelLineCommand extends Command {
 
     @Override
     public String getDescription() {
-        return "";
+        return "обновить строку отчёта";
     }
 
     @Override
     public String getName() {
-        return "";
+        return "update_line";
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return false;
-    }
+public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (!(obj instanceof RepUpdateLineCommand)) return false;
+    RepUpdateLineCommand other = (RepUpdateLineCommand) obj;
+    return lineId == other.lineId;
+}
 
-    @Override
-    public int hashCode() {
-        return 0;
-    }
+@Override
+public int hashCode() {
+    return Long.hashCode(lineId);
+}
 
-    @Override
-    public String toString() {
-        return "";
-    }
+@Override
+public String toString() {
+    return "RepUpdateLineCommand{lineId=" + lineId + "}";
 }
