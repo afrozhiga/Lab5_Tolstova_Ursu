@@ -31,11 +31,12 @@ public class RepLinesCommand extends Command {
 
     @Override
     public String getName() {
-        return null;
+        return "rep_lines";
     }
 
     @Override
-    public String getDescription() { return "rep_lines <report_id> — строки отчёта"; }
+    public String getDescription() { 
+        return "rep_lines <report_id> — строки отчёта"; }
 
     @Override
     public void execute(String[] args) {
